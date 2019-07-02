@@ -11,7 +11,7 @@ import scrapy
 class AmazonItem(scrapy.Item):
     # define the fields for your item here like:
     # name = scrapy.Field()
-    review_id = scrapy.Field()
+    #review_id = scrapy.Field()
     review_title = scrapy.Field()
     review_date = scrapy.Field()
     review_stars = scrapy.Field()
