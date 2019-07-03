@@ -14,15 +14,17 @@ class GoProSpider(scrapy.Spider):
     def parse(self, response):
     
         items = goProItem()
-        amazon = 'Amazon'
+        amazon = ['Amazon']
         goProPage = response.css('#dp-container')
        
         for info in goProPage:
             productName = info.css('#productTitle::text').extract()
             brand = info.css('#bylineInfo::text').extract()
             source = amazon
-            #msrp = info.css('#buyNew_noncbb .a-text-normal').css('::text').extract()
-            msrp = info.xpath('//*[(@id = "buyNew_noncbb")]//*[contains(concat( " ", @class, " " ), concat( " ", "a-text-normal", " " ))]').css('::text').extract()
+            if info.css('#priceblock_ourprice::text'):
+                msrp = info.css('#priceblock_ourprice::text').extract()
+            else:
+                msrp = ['Only available from third party sellers']
             #sale = info.css('').extract()
             description = info.css('#productDescription p').css('::text').extract()
             rating = info.css('#productDetails_detailBullets_sections1 .a-icon-alt').css('::text').extract()

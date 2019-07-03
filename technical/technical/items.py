@@ -25,7 +25,7 @@ class goProItem(scrapy.Item):
     brand = scrapy.Field()
     source = scrapy.Field()
     msrp = scrapy.Field()
-    #sale = scrapy.Field()
+    sale = scrapy.Field()
     description = scrapy.Field()
     rating = scrapy.Field()
     reviewNumber = scrapy.Field()
