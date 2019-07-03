@@ -23,7 +23,7 @@ class AmazonItem(scrapy.Item):
 class goProItem(scrapy.Item):
     productName = scrapy.Field()
     brand = scrapy.Field()
-    #source = scrapy.Field()
+    source = scrapy.Field()
     msrp = scrapy.Field()
     #sale = scrapy.Field()
     description = scrapy.Field()

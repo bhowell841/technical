@@ -41,8 +41,17 @@ class SecondSpider(scrapy.Spider):
             
             yield items
             
+            NEXT_PAGE_SELECTOR = '.a-last a ::attr(href)'
+            next_page = response.css(NEXT_PAGE_SELECTOR).extract_first()
+            if next_page:
+                yield scrapy.Request(
+                        response.urljoin(next_page),
+                        callback=self.parse
+                )
             
+            '''
             next_page = 'https://www.amazon.com/GoPro-Fusion-Waterproof-Digital-Spherical/product-reviews/B0792MJLNM/ref=cm_cr_getr_d_paging_btm_next_8?ie=UTF8&reviewerType=all_reviews&pageNumber=' + str(SecondSpider.pageNumber)
             if SecondSpider.pageNumber <= 8:
                 SecondSpider.pageNumber += 1
                 yield response.follow(next_page, callback = self.parse)
+            '''
