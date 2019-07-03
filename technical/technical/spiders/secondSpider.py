@@ -31,7 +31,8 @@ class SecondSpider(scrapy.Spider):
             review_stars = review.css('.a-icon-alt::text').extract()
             #review_stars = review.css('.review-rating').extract()
             #review_text = review.css('.a-spacing-small.review-data , .review-text-content spann').css('::text').extract()
-            review_text = review.css('.review-text').extract()
+            review_text = review.css('.review-text').css('::text').extract()
+            
             
             items['review_id'] = review_id
             items['review_title'] = review_title
