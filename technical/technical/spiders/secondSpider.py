@@ -21,7 +21,7 @@ class SecondSpider(scrapy.Spider):
         items = AmazonItem()
         
         all_reviews = response.css('#cm_cr-review_list')
-       
+        
         for review in all_reviews:
             review_id = review.css('.a-profile-name').css('::text').extract()
             review_title = review.css('.a-text-bold span').css('::text').extract()
@@ -39,9 +39,9 @@ class SecondSpider(scrapy.Spider):
             items['review_date'] = review_date
             items['review_stars'] = review_stars
             items['review_text'] = review_text
-            
+        
             yield items
-            
+        
             NEXT_PAGE_SELECTOR = '.a-last a ::attr(href)'
             next_page = response.css(NEXT_PAGE_SELECTOR).extract_first()
             if next_page:
