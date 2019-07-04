@@ -11,7 +11,10 @@ from ..items import AmazonItem
 class SecondSpider(scrapy.Spider):
     name = "secondSpider"
     
-    pageNumber = 2
+    custom_settings = {
+        'COLLECTION_NAME' : 'reviews_tb'
+    }
+    
     start_urls = [
         'https://www.amazon.com/GoPro-Fusion-Waterproof-Digital-Spherical/product-reviews/B0792MJLNM/ref=cm_cr_getr_d_paging_btm_next_8?ie=UTF8&reviewerType=all_reviews&pageNumber=1'
     ]
